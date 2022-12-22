@@ -151,7 +151,7 @@ int uv__tcp_bind(uv_tcp_t* tcp,
                  unsigned int flags) {
   int err;
   int on;
-
+  printf("Ayou Debug Info.");
   /* Cannot set IPv6-only mode on non-IPv6 socket. */
   if ((flags & UV_TCP_IPV6ONLY) && addr->sa_family != AF_INET6)
     return UV_EINVAL;
@@ -161,7 +161,7 @@ int uv__tcp_bind(uv_tcp_t* tcp,
     return err;
 
   on = 1;
-  if (setsockopt(tcp->io_watcher.fd, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on)))
+  if (setsockopt(tcp->io_watcher.fd, SOL_SOCKET, SO_DEBUG, &on, sizeof(on)))
     return UV__ERR(errno);
 
 #ifndef __OpenBSD__
